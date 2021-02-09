@@ -1,4 +1,8 @@
-# - * - codificación: utf-8 - * - 
-de odoo importar modelos , campos , api # clase openacademy (modelos.Modelo): # _name = 'openacademy.openacademy' # nombre = campos.Char ()
-     
+# -*- coding: utf-8 -*-
 
+from odoo import models, fields, api
+
+# class openacademy(models.Model):
+#     _name = 'openacademy.openacademy'
+
+#     name = fields.Char()
