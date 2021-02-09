@@ -1,3 +1,3 @@
-# - * - codificación: utf-8 - * - 
-de  .  importar  controladores 
-de  .  importar  modelos
+# -*- coding: utf-8 -*-
+from . import controllers
+from . import models
