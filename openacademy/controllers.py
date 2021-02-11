@@ -18,3 +18,4 @@ from odoo import http
 #         return http.request.render('openacademy.object', {
 #             'object': obj
 #         })
+

@@ -6,3 +6,4 @@ from odoo import models, fields, api
 #     _name = 'openacademy.openacademy'
 
 #     name = fields.Char()
+
