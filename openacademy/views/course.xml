@@ -9,6 +9,7 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="responsible_id"/>
                         <!-- <field name="description"/> -->
                     </group>
                     <notebook>
@@ -17,6 +18,14 @@
                         </page>
                         <page string="About">
                                 This is an example of notebooks
+                        </page>
+                        <page string="Sessions">
+                            <field name="session_ids">
+                                <tree string="Registered sessions">
+                                    <field name="name"/>
+                                    <field name="instructor_id"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -32,6 +41,18 @@
                 <field name="name"/>
                 <field name="description"/>
             </search>
+        </field>
+    </record>
+
+    <!-- override the automatically generated list view for courses -->
+    <record model="ir.ui.view" id="course_tree_view">
+        <field name="name">course.tree</field>
+        <field name="model">openacademy.course</field>
+        <field name="arch" type="xml">
+            <tree string="Course Tree">
+                <field name="name"/>
+                <field name="responsible_id"/>
+            </tree>
         </field>
     </record>
 
