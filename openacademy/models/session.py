@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 from odoo import models, fields, api, exceptions
 
 class Session(models.Model):
@@ -16,6 +17,8 @@ class Session(models.Model):
     course_id = fields.Many2one('openacademy.course',
         ondelete='cascade', string="Course", required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
+    end_date = fields.Date(string="End Date", store=True,
+        compute='_get_end_date', inverse='_set_end_date')
     
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
 
@@ -43,6 +46,27 @@ class Session(models.Model):
                     'message': "Increase seats or remove excess attendees",
                 },
             }
+    
+    @api.depends('start_date', 'duration')
+    def _get_end_date(self):
+        for r in self:
+            if not (r.start_date and r.duration):
+                r.end_date = r.start_date
+                continue
+
+            # Add duration to start_date, but: Monday + 5 days = Saturday, so
+            # subtract one second to get on Friday instead
+            duration = timedelta(days=r.duration, seconds=-1)
+            r.end_date = r.start_date + duration
+
+    def _set_end_date(self):
+        for r in self:
+            if not (r.start_date and r.end_date):
+                continue
+
+            # Compute the difference between dates, but: Friday - Monday = 4 days,
+            # so add one day to get 5 days instead
+            r.duration = (r.end_date - r.start_date).days + 1
         
     @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor_not_in_attendees(self):
