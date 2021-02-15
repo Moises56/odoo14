@@ -7,12 +7,6 @@
         <field name="arch" type="xml">
             <form string="Session Form">
                 <sheet>
-                    <!-- <group>
-                        <field name="name"/>
-                        <field name="start_date"/>
-                        <field name="duration"/>
-                        <field name="seats"/>
-                    </group> -->
                     <group string="General">
                         <field name="course_id"/>
                         <field name="name"/>
@@ -57,10 +51,19 @@
         </field>
     </record>
 
+    <record model="ir.ui.view" id="session_gantt_view">
+        <field name="name">session.gantt</field>
+        <field name="model">openacademy.session</field>
+        <field name="arch" type="xml">
+            <gantt string="Session Gantt" date_start="start_date" date_stop="end_date" default_group_by='instructor_id'>
+            </gantt>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Sessions</field>
         <field name="res_model">openacademy.session</field>
-        <field name="view_mode">tree,form,calendar</field>
+        <field name="view_mode">tree,form,calendar,gantt</field>
     </record>
 
     <menuitem id="session_menu" name="Sessions" parent="openacademy_menu" action="session_list_action"/>
