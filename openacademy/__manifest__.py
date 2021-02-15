@@ -31,7 +31,8 @@
         'views/course.xml',
         'views/session.xml',
         'views/partner.xml',
-        'views/wizard.xml'
+        'views/wizard.xml',
+        'views/reports.xml' 
     ],
     # only loaded in demonstration mode
     'demo': [
