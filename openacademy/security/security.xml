@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="group_manager" model="res.groups">
+        <field name="name">OpenAcademy / Manager</field>
+    </record>
+
+</odoo>
+
+
+<!-- id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_openacademy_course,openacademy.course,model_openacademy_course,,1,1,1,1
+access_openacademy_session,openacademy.session,model_openacademy_session,,1,1,1,1
+ -->
+
